@@ -8,8 +8,8 @@ services:
       - "25575:25575"
     environment:
       EULA: "TRUE"
-      TYPE: "AUTO_CURSEFORGE"
-      CF_MODPACK_ZIP: /modpack/modpack.zip
+      TYPE: "CURSEFORGE"
+      CF_SERVER_MOD: ${MODPACK_URL}
       MEMORY: "8G"
       OPS: "JustTheWise"
       ENABLE_RCON: "true"
@@ -18,14 +18,6 @@ services:
     volumes:
       - mc_data:/data
       - mc_modpack:/modpack
-    entrypoint: >
-      sh -c "
-        if [ ! -f /modpack/modpack.zip ]; then
-          echo 'Téléchargement du modpack...';
-          curl -L -o /modpack/modpack.zip ${MODPACK_URL};
-        fi;
-        exec /start
-      "
 volumes:
   mc_data:
   mc_modpack:
