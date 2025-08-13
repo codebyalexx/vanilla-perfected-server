@@ -9,6 +9,7 @@ services:
     environment:
       EULA: "TRUE"
       TYPE: "CURSEFORGE"
+      CF_API_KEY: ${CF_API_KEY}
       CF_SERVER_MOD: /modpack/modpack.zip
       MEMORY: "8G"
       OPS: "JustTheWise"
