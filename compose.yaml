@@ -1,23 +1,23 @@
 services:
   mc:
-    image: itzg/minecraft-server:java17 # Adaptez la version Java au modpack
+    image: itzg/minecraft-server:java17
     container_name: mc
     restart: unless-stopped
     ports:
-      - "25565:25565" # Minecraft
-      - "25575:25575" # (optionnel) RCON si activé
+      - "25565:25565"
+      - "25575:25575"
     environment:
       EULA: "TRUE"
-      TYPE: "CURSEFORGE" # Active l'installation/MAJ automatiques du modpack
+      TYPE: "CURSEFORGE"
       CF_SERVER_MOD: /modpack/modpack.zip
-      CF_API_KEY: ${CF_API_KEY} # Stocké dans Coolify (Secret ou .env)
-      MEMORY: "8G" # Beaucoup de modpacks demandent ≥4G
+      MEMORY: "8G"
       OPS: "JustTheWise"
       ENABLE_RCON: "true"
       RCON_PASSWORD: ${RCON_PASSWORD}
       ONLINE_MODE: "true"
     volumes:
       - mc_data:/data
-      - ./modpack:/modpack # dossier local avec ton .zip
+      - mc_modpack:/modpack # volume persistant pour ton zip
 volumes:
   mc_data:
+  mc_modpack:
