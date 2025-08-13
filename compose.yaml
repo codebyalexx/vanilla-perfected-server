@@ -17,7 +17,11 @@ services:
       ONLINE_MODE: "true"
     volumes:
       - mc_data:/data
-      - mc_modpack:/modpack # volume persistant pour ton zip
+      - mc_modpack:/modpack
+      - ./modpack:/modpack_src # zip dans ton repo
+    entrypoint: >
+      sh -c "cp -n /modpack_src/modpack.zip /modpack/ &&
+             exec /start"  # lance le script officiel après copie
 volumes:
   mc_data:
   mc_modpack:
