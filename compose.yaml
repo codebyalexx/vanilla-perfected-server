@@ -18,10 +18,14 @@ services:
     volumes:
       - mc_data:/data
       - mc_modpack:/modpack
-      - ./modpack:/modpack_src # zip dans ton repo
     entrypoint: >
-      sh -c "cp -n /modpack_src/modpack.zip /modpack/ &&
-             exec /start"  # lance le script officiel après copie
+      sh -c "
+        if [ ! -f /modpack/modpack.zip ]; then
+          echo 'Téléchargement du modpack...';
+          curl -L -o /modpack/modpack.zip ${MODPACK_URL};
+        fi;
+        exec /start
+      "
 volumes:
   mc_data:
   mc_modpack:
