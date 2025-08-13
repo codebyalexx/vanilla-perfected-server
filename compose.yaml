@@ -10,7 +10,7 @@ services:
       EULA: "TRUE"
       TYPE: "AUTO_CURSEFORGE"
       CF_API_KEY: ${CF_API_KEY}
-      CF_SERVER_MOD: /modpack/modpack.zip
+      CF_MODPACK_ZIP: /modpack/modpack.zip
       MEMORY: "8G"
       OPS: "JustTheWise"
       ENABLE_RCON: "true"
